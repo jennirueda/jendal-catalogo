@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+
 :root {
   --cream: #f7f2e9;
   --paper: #fffdf8;
@@ -136,4 +138,61 @@ h1 em, h2 em { color: var(--brown); font-weight: 400; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; }
+}
+
+
+:root {
+  --cream: #fbf7ef;
+  --paper: #fffdf9;
+  --beige: #eadcc8;
+  --brown: #72513c;
+  --deep: #332920;
+  --gold: #c39a54;
+  --rose: #dc929d;
+  --green: #768766;
+  --ink: #302820;
+  --serif: "Caveat", "Segoe Print", cursive;
+  --sans: "DM Sans", "Trebuchet MS", sans-serif;
+}
+.site-header { padding-top: 8px; padding-bottom: 8px; }
+.brand img, .footer-brand img { mix-blend-mode: normal; }
+.brand img { width: 174px; }
+.eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0; text-transform: none; }
+h1, h2 { letter-spacing: -.025em; }
+h1 { font-size: clamp(68px, 8.2vw, 108px); line-height: .8; }
+h1 em, h2 em { font-style: normal; }
+.art-note { font-family: var(--serif); font-size: 23px; font-style: normal; }
+.text-link, .intro-stamp, .product-info h3, .photo-flower, .image-index, .custom-side-note, .site-footer p { font-family: var(--serif); }
+.text-link { font-style: normal; font-size: 22px; }
+.intro-stamp { border-style: dashed; font-style: normal; font-size: 19px; }
+.button { border-radius: 999px; text-transform: none; letter-spacing: 0; font-size: 13px; font-weight: 600; }
+.button-dark { background: var(--green); }
+.button-dark:hover { background: var(--brown); }
+.nav-cta { border-radius: 999px; background: #f4e6df; padding: 11px 18px; }
+.hero { background: #f8eee7; }
+.sun-disc { background: #efdbc4; border-radius: 48% 52% 47% 53%; transform: rotate(-8deg); }
+.hero-flower { transform: rotate(-5deg); }
+.collection { background: #f7f0e4; }
+.filter { border-radius: 999px; }
+.filter:hover, .filter.is-active { background: var(--green); border-color: var(--green); }
+.product-card { padding: 12px 12px 18px; border-radius: 22px; background: var(--paper); transform: rotate(-.4deg); transition: transform .2s ease; }
+.product-card:nth-child(2) { transform: rotate(.5deg); }
+.product-card:hover { transform: translateY(-5px) rotate(0); }
+.product-image { border-radius: 16px; }
+.product-image::before, .product-image::after { border-style: dashed; }
+.product-info { padding: 17px 6px 0; }
+.product-info h3 { font-size: 30px; }
+.product-description { margin: 8px 6px 16px; }
+.product-link { margin: 0 6px; }
+.custom { border-radius: 28px; background: #3b4937; }
+.custom h2 em { color: #f0c2b9; }
+.custom-side-note { font-size: 30px; line-height: .95; font-style: normal; }
+.site-footer { background: #f8eee7; }
+.site-footer p { font-size: 24px; font-style: normal; }
+.footer-social { border-radius: 0; }
+@media (max-width: 780px) {
+  h1 { font-size: clamp(70px, 15vw, 100px); }
+  .brand img { width: 138px; }
+  .product-card, .product-card:nth-child(2) { transform: none; }
+  .custom { border-radius: 22px; }
 }
