@@ -28,6 +28,8 @@ window.JENDAL = {
     credit: { name: "El S", url: "https://unsplash.com/es/fotos/mujer-con-camiseta-blanca-sin-mangas-gUPznplBsLI" }
   },
 
+  upcoming: ["Pulseras", "Anillos", "Aretes"],
+
   collections: [
     { id: "semilla-botanica", name: "Semilla botánica", status: "active" },
     { id: "flores-temporada", name: "Flores de temporada", status: "upcoming" },
