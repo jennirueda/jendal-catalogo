@@ -37,10 +37,10 @@
 
   const heroCanvas = document.querySelector(".hero-canvas");
   const heroCycle = [
-    { petal: "#E7B4B9", edge: "#FDE5E8", center: "#E8F0A2", leaf: "#999D4F", chain: "#999D4F", ink: "#582A35" },
-    { petal: "#A4565C", edge: "#E7B4B9", center: "#E8F0A2", leaf: "#999D4F", chain: "#999D4F", ink: "#582A35" },
-    { petal: "#FDE5E8", edge: "#E7B4B9", center: "#A4565C", leaf: "#999D4F", chain: "#999D4F", ink: "#582A35" },
-    { petal: "#E8F0A2", edge: "#999D4F", center: "#A4565C", leaf: "#999D4F", chain: "#999D4F", ink: "#582A35" }
+    { petal: "#FFB5BD", edge: "#FDE5E8", center: "#F4F7CD", leaf: "#8D9A2E", chain: "#8D9A2E", ink: "#752640" },
+    { petal: "#F4F7CD", edge: "#8D9A2E", center: "#B32F4E", leaf: "#8D9A2E", chain: "#8D9A2E", ink: "#752640" },
+    { petal: "#B32F4E", edge: "#FFB5BD", center: "#F4F7CD", leaf: "#8D9A2E", chain: "#8D9A2E", ink: "#752640" },
+    { petal: "#FDE5E8", edge: "#FFB5BD", center: "#B32F4E", leaf: "#8D9A2E", chain: "#8D9A2E", ink: "#752640" }
   ];
   const heroArt = window.JendalBeads.create(heroCanvas, {
     model: "lirio", view: "bloom", variant: heroCycle[0], intro: "auto",
