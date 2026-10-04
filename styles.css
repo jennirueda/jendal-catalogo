@@ -23,8 +23,8 @@
   --leaf: #8d9a2e;
   --cream: #fff8f1;
 
-  --display: "Bodoni Moda", "Bodoni MT", Didot, Georgia, serif;
-  --script: "Italianno", "Segoe Script", cursive;
+  --display: "Cormorant Garamond", "Bodoni Moda", Didot, Georgia, serif;
+  --script: "Ballet", "Italianno", cursive;
   --text: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 
   --gutter: clamp(20px, 5vw, 72px);
@@ -330,3 +330,26 @@ svg { width: 1.15em; height: 1.15em; flex: none; }
 .craft { background:#f8e4e8; }
 .site-footer { background:var(--leaf); color:var(--paper); }
 .site-footer .footer-line { color:var(--paper); }
+
+
+/* Colecciones Jendal y títulos inspirados en Swantime */
+.collection-head { align-items:end; }
+.collection-title { min-width:0; }
+.collection-kicker { margin:0 0 12px; color:var(--wine); font-size:.7rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; }
+.collection-head h2 { max-width:12ch; font-size:clamp(2.8rem,7.2vw,5.2rem); line-height:.92; }
+.collection-head > p { max-width:31rem; padding-bottom:.35rem; }
+.soon h2 { font-family:var(--display); font-size:clamp(2.35rem,5vw,3.75rem); line-height:1; }
+.soon-intro { max-width:34rem; margin-top:14px; color:rgba(255,248,241,.82); font-size:clamp(.92rem,1.5vw,1.03rem); }
+.soon-list { margin-top:clamp(26px,4vw,46px); }
+.soon-list li { gap:clamp(12px,2vw,22px); padding:clamp(14px,2vw,20px) 0; min-width:0; }
+.soon-name { flex:1 1 auto; min-width:0; font-family:var(--display); font-size:clamp(1.55rem,3.8vw,2.8rem); line-height:1.08; overflow-wrap:anywhere; }
+.soon-tag { flex:none; font-size:clamp(.68rem,1vw,.82rem); white-space:nowrap; }
+.manifesto em { font-family:var(--script); }
+@media (max-width:720px) {
+  .collection-head { grid-template-columns:1fr; align-items:start; }
+  .collection-head h2 { max-width:none; font-size:clamp(2.5rem,10vw,3.6rem); }
+  .collection-head > p { padding-bottom:0; }
+  .soon { padding-block:clamp(68px,15vw,112px); }
+  .soon-list li { align-items:baseline; }
+  .soon-name { font-size:clamp(1.5rem,7vw,2.2rem); }
+}
