@@ -14,6 +14,20 @@ window.JENDAL = {
   whatsapp: "",
   instagram: "jendal_accesorios",
 
+  // Foto para la vista "Puesta" mientras no haya fotos propias de cada pieza.
+  // path: caída del collar en coordenadas de 0 a 1000 sobre el recorte cuadrado de la foto.
+  modelo: {
+    src: "assets/modelo/cuello.jpg",
+    crop: { x: 300, y: 0, size: 1200 },
+    path: [
+      [[402, 372], [384, 560], [466, 742], [540, 756]],
+      [[540, 756], [614, 766], [828, 610], [884, 418]]
+    ],
+    chainR: 4.2,
+    scale: 100,
+    credit: { name: "El S", url: "https://unsplash.com/es/fotos/mujer-con-camiseta-blanca-sin-mangas-gUPznplBsLI" }
+  },
+
   pieces: [
     {
       id: "lirio",

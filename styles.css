@@ -152,6 +152,9 @@ svg { width: 1.15em; height: 1.15em; flex: none; }
 .piece-stage { position: relative; align-self: stretch; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 20px; padding: 72px var(--gutter) 56px; }
 .piece-canvas, .piece-photo { width: min(100%, 68svh, 680px); aspect-ratio: 1; }
 .piece-photo { object-fit: cover; border-radius: 16px; }
+.piece-canvas { border-radius: 16px; transition: box-shadow 0.9s var(--ease-out); }
+.piece.is-worn .piece-canvas { box-shadow: 0 30px 60px -30px color-mix(in srgb, var(--ink) 55%, transparent); }
+.stage-note a { color: inherit; }
 .stage-note { position: absolute; top: 32px; left: var(--gutter); font-size: 0.74rem; letter-spacing: 0.06em; color: color-mix(in srgb, var(--ink) 60%, transparent); }
 .piece.is-flipped .stage-note { left: auto; right: var(--gutter); }
 

@@ -94,13 +94,18 @@
 
     let current = piece.variants[0];
     let mode = "flat";
-    const art = window.JendalBeads.create(canvas, { model: piece.model, variant: current, ink: current.ink, intro: "wait" });
+    const art = window.JendalBeads.create(canvas, { model: piece.model, variant: current, ink: current.ink, intro: "wait", wear: data.modelo });
 
     function showPhoto() {
       const src = current.images && current.images[mode];
       photo.hidden = !src;
       canvas.hidden = !!src;
       note.hidden = !!src;
+      node.classList.toggle("is-worn", mode === "worn");
+      const credit = data.modelo && data.modelo.credit;
+      note.innerHTML = mode === "worn" && credit
+        ? `Collar ilustrado · foto de <a href="${credit.url}" target="_blank" rel="noopener">${credit.name}</a> en Unsplash`
+        : "Ilustración del diseño";
       if (src) {
         photo.src = src;
         photo.alt = `Collar ${piece.name} en color ${current.name}${mode === "worn" ? ", puesto" : ""}`;
@@ -163,7 +168,7 @@
     });
 
     apply(current, false);
-    setMode("flat");
+    setMode("worn");
     list.append(node);
 
     new IntersectionObserver((entries, observer) => {

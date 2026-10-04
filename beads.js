@@ -155,21 +155,24 @@
     return [left, mirror(left), clav, mirror(clav), notch];
   }
 
-  function buildNecklace(modelName) {
+  function buildNecklace(modelName, wear) {
     const model = MODELS[modelName]();
-    const wornScale = 80, flatScale = 132;
-    const chainR = { worn: 2.9, flat: 4.85 };
+    const wornScale = wear ? wear.scale : 80, flatScale = 132;
+    const chainR = { worn: wear ? wear.chainR : 2.9, flat: 4.85 };
 
     const neck = neckFigure();
     const leftNeck = neck[0];
     const y0 = 352;
     const lx = leftNeck.reduce((best, p) => (Math.abs(p[1] - y0) < Math.abs(best[1] - y0) ? p : best))[0] + 3;
 
-    const wornBottom = [W / 2, 600];
-    const wornPath = [
-      ...cubic([lx, y0], [lx - 6, 470], [452, 600], wornBottom),
-      ...cubic(wornBottom, [548, 600], [W - lx + 6, 470], [W - lx, y0]).slice(1)
-    ];
+    // con foto, la caída del collar sigue el cuello real de la modelo
+    const wornBottom = wear ? wear.path[0][3] : [W / 2, 600];
+    const wornPath = wear
+      ? [...cubic(...wear.path[0]), ...cubic(...wear.path[1]).slice(1)]
+      : [
+          ...cubic([lx, y0], [lx - 6, 470], [452, 600], wornBottom),
+          ...cubic(wornBottom, [548, 600], [W - lx + 6, 470], [W - lx, y0]).slice(1)
+        ];
     const flatBottom = [W / 2, 592];
     const flatPath = [];
     const cx = W / 2, cy = 360, rx = 182, ry = 232;
@@ -184,6 +187,7 @@
     const count = Math.round(wornLen / (chainR.worn * 2.08));
     const wornChain = byCount(wornPath, count);
     const flatChain = byCount(flatPath, count);
+    chainR.flat = Math.min(7.5, lengths(flatPath).pop() / (count * 2.08));
 
     const beads = [];
     wornChain.forEach((wp, i) => {
@@ -194,7 +198,9 @@
         role: i % 9 === 4 ? "accent" : "chain",
         order: 0.42 + Math.abs(t - 0.5) * 1.1,
         travel: Math.abs(t - 0.5) * 0.5,
-        layer: 0
+        layer: 0,
+        // los extremos se pierden detrás del cuello
+        hide: wear ? clamp01(Math.min(t, 1 - t) / 0.14) : 1
       });
     });
 
@@ -219,7 +225,7 @@
     const wCenter = [wornBottom[0], wornBottom[1] - model.top * wornScale];
     place(model.beads, fCenter, wCenter, flatScale, wornScale, 2, 0);
 
-    return { beads, neck, focus: { flat: fCenter, worn: wCenter } };
+    return { beads, neck: wear ? null : neck, focus: { flat: fCenter, worn: wCenter } };
   }
 
   function buildBloom(modelName, { cx = 560, cy = 520, scale = 330, rotate = -0.2 } = {}) {
@@ -251,7 +257,14 @@
 
   function create(canvas, opts) {
     const ctx = canvas.getContext("2d");
-    const scene = opts.view === "bloom" ? buildBloom(opts.model, opts.bloom) : buildNecklace(opts.model);
+    const scene = opts.view === "bloom" ? buildBloom(opts.model, opts.bloom) : buildNecklace(opts.model, opts.wear);
+    let photo = null;
+    if (opts.wear) {
+      photo = new Image();
+      photo.decoding = "async";
+      photo.onload = () => kick();
+      photo.src = opts.wear.src;
+    }
     const ink = hexToRgb(opts.ink || "#1c1416");
     let pal = palette(opts.variant);
     const now = () => performance.now();
@@ -310,6 +323,14 @@
       ctx.clearRect(0, 0, size.w, size.h);
       ctx.setTransform(size.k, 0, 0, size.k, size.ox, size.oy);
 
+      if (photo && photo.complete && photo.naturalWidth && mode > 0.001) {
+        const c = opts.wear.crop;
+        ctx.save();
+        ctx.globalAlpha = inOut(clamp01(mode * 1.4));
+        ctx.drawImage(photo, c.x, c.y, c.size, c.size, 0, 0, W, W);
+        ctx.restore();
+      }
+
       // la silueta se dibuja como una sola línea, igual que el logo
       if (scene.neck && mode > 0.001) {
         const drawn = inOut(clamp01(mode * 1.25));
@@ -354,7 +375,7 @@
           const local = clamp01((intro * 1.35 - b.order * 0.95) / 0.22);
           s = local <= 0 ? 0 : expoOut(local) * (1 + 0.25 * Math.sin(local * Math.PI));
         }
-        pos[i * 4] = x; pos[i * 4 + 1] = y; pos[i * 4 + 2] = r * s; pos[i * 4 + 3] = s;
+        pos[i * 4] = x; pos[i * 4 + 1] = y; pos[i * 4 + 2] = r * s; pos[i * 4 + 3] = 1 - m * (1 - (b.hide ?? 1));
       }
 
       // sombra suave sobre la mesa
@@ -370,11 +391,32 @@
         }
       }
 
+      // sombra de las cuentas sobre la piel
+      if (photo && mode > 0.01) {
+        ctx.save();
+        ctx.globalCompositeOperation = "multiply";
+        ctx.filter = `blur(${Math.max(1, 2.6 * size.k).toFixed(1)}px)`;
+        ctx.fillStyle = `rgba(74,40,26,${(0.5 * mode).toFixed(3)})`;
+        for (let i = 0; i < list.length; i++) {
+          const r = pos[i * 4 + 2];
+          if (r <= 0) continue;
+          ctx.globalAlpha = pos[i * 4 + 3];
+          ctx.beginPath();
+          ctx.arc(pos[i * 4] + r * 0.3, pos[i * 4 + 1] + r * 0.95, r * 1.1, 0, TAU);
+          ctx.fill();
+        }
+        ctx.restore();
+      }
+
+      const warm = [196, 150, 120], tone = photo ? mode : 0;
       for (let i = 0; i < list.length; i++) {
         const r = pos[i * 4 + 2];
         if (r <= 0) continue;
         const x = pos[i * 4], y = pos[i * 4 + 1], b = list[i];
-        const c = colorOf(b, t);
+        ctx.globalAlpha = pos[i * 4 + 3];
+        if (ctx.globalAlpha <= 0.01) continue;
+        let c = colorOf(b, t);
+        if (tone) c = shade(mix(c, warm, 0.1 * tone), -0.1 * tone);
         if (t - b.cStart - b.cDelay < COLOR_MS) busy = true;
         ctx.fillStyle = css(shade(c, -0.3));
         ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill();
@@ -388,6 +430,7 @@
         }
       }
 
+      ctx.globalAlpha = 1;
       raf = busy ? requestAnimationFrame(draw) : 0;
     }
 
