@@ -28,10 +28,18 @@ window.JENDAL = {
     credit: { name: "El S", url: "https://unsplash.com/es/fotos/mujer-con-camiseta-blanca-sin-mangas-gUPznplBsLI" }
   },
 
+  collections: [
+    { id: "semilla-botanica", name: "Semilla botánica", status: "active" },
+    { id: "flores-temporada", name: "Flores de temporada", status: "upcoming" },
+    { id: "mundos-favoritos", name: "Mundos favoritos", status: "upcoming" },
+    { id: "a-tu-manera", name: "A tu manera", status: "upcoming" }
+  ],
+
   pieces: [
     {
       id: "lirio",
       category: "Collar",
+      collection: "semilla-botanica",
       name: "Lirio",
       model: "lirio",
       price: null,
@@ -61,5 +69,4 @@ window.JENDAL = {
     }
   ],
 
-  upcoming: ["Pulseras", "Anillos", "Aretes"]
 };
