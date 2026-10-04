@@ -1,231 +1,178 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-MX">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#fff8f1">
-  <meta name="description" content="Jendal: joyería botánica mexicana hecha con alambre y chaquiras. Flores para expresar tu manera de florecer.">
-  <title>Jendal — joyería botánica</title>
-  <link rel="icon" href="assets/logo-jendal.png?v=20261003d">
-  <link rel="stylesheet" href="styles.css?v=20261003d">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Jendal · Joyería botánica tejida a mano</title>
+  <meta name="description" content="Collares de flores tejidas a mano con chaquira. Elige tu flor, elige tu color y pídela por WhatsApp. Hecho a mano en México.">
+  <meta name="theme-color" content="#5a1622">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Jendal · Joyería botánica tejida a mano">
+  <meta property="og:description" content="Flores de chaquira tejidas a mano. Elige tu flor y tu color.">
+  <meta property="og:image" content="assets/icon-512.png">
+  <link rel="icon" href="assets/icon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="assets/icon-180.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Italiana&display=swap">
+  <link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.2a9.7 9.7 0 0 0-8.3 14.8L2.4 21.6l4.7-1.2A9.7 9.7 0 1 0 12 2.2Zm0 17.7a8 8 0 0 1-4.1-1.1l-.3-.2-2.8.7.8-2.7-.2-.3A8 8 0 1 1 12 19.9Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8 1c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.6.3 2.6 2.6 0 0 0-.8 1.9 4.5 4.5 0 0 0 1 2.4 10.3 10.3 0 0 0 4 3.5c1.5.6 2 .7 2.8.6a2.3 2.3 0 0 0 1.5-1.1 1.9 1.9 0 0 0 .1-1.1c0-.1-.2-.2-.5-.3Z"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5"/><circle cx="12" cy="12" r="4.1"/></g><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 6l6 6-6 6"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+  </svg>
+
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
-  <div class="announcement"><span class="announcement-flower">✳</span> COLECCIÓN BOTÁNICA · PIEZAS CON PERSONALIDAD <span class="announcement-flower">✳</span></div>
-  <header class="site-header">
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú"><span></span><span></span></button>
-    <a class="brand" href="#inicio" aria-label="Jendal, inicio">
-      <img src="assets/logo-jendal.png?v=20261003d" alt="Jendal, logotipo manuscrito con una flor">
-    </a>
-    <nav id="site-nav" class="site-nav" aria-label="Navegación principal">
-      <a href="#coleccion">El catálogo</a>
-      <a href="#archivo">El archivo</a>
-      <a href="#inspiracion">Nuestra esencia</a>
-      <a href="#personalizados">A tu manera</a>
+
+  <header class="site-header" data-tone="dark">
+    <nav class="nav" aria-label="Principal">
+      <a href="#collares">Collares</a>
+      <a href="#hecho-a-mano">Hecho a mano</a>
+      <a href="#preguntas">Pedidos</a>
     </nav>
-    <a class="header-link" href="https://www.instagram.com/jendal_accesorios/" target="_blank" rel="noreferrer">Instagram <span aria-hidden="true">↗</span></a>
+    <a class="brand" href="#inicio" aria-label="Jendal, ir al inicio"><span class="logo" role="img" aria-label="Jendal"></span></a>
+    <a class="header-cta js-wa" href="#" data-message="Hola Jendal, quiero información sobre sus collares.">
+      <svg aria-hidden="true"><use href="#i-wa"/></svg><span>Escríbenos</span>
+    </a>
   </header>
 
   <main id="contenido">
-    <section class="hero" id="inicio">
-      <div class="hero-copy reveal">
-        <p class="eyebrow"><span class="eyebrow-line"></span> Objetos botánicos para adornarte</p>
-        <h1>Una flor<br>que <em>habla de ti.</em></h1>
-        <p class="hero-text">Joyería inspirada en la belleza inesperada de las flores: color, forma y un poquito de magia para todos los días.</p>
-        <a class="round-link" href="#coleccion">Pasear por la colección <span>↓</span></a>
-        <p class="hero-note">Hecho en México <span>·</span> Diseñado para ti</p>
+    <section class="hero" id="inicio" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">Flores que se llevan puestas.</h1>
+        <p class="hero-lede">Joyería botánica tejida a mano, chaquira por chaquira. Cada flor se hace en el color que tú elijas.</p>
+        <div class="hero-actions">
+          <a class="btn btn-light" href="#collares">Ver los collares <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="link-light js-ig" href="https://www.instagram.com/jendal_accesorios/" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-ig"/></svg>@jendal_accesorios</a>
+        </div>
       </div>
-      <div class="hero-visual reveal" aria-label="Ilustración original de flores botánicas">
-        <div class="hero-orbit orbit-one"></div>
-        <div class="hero-orbit orbit-two"></div>
-        <div class="hero-flower flower-back" aria-hidden="true">✿</div>
-        <svg class="hero-bloom" viewBox="0 0 430 470" role="img" aria-label="Flores rosas dibujadas en tallos verdes">
-          <path class="hero-stem" d="M214 236 C209 312 236 363 202 450"/>
-          <path class="hero-stem stem-right" d="M240 230 C275 295 313 345 331 427"/>
-          <path class="hero-leaf" d="M216 326 C148 267 111 294 130 326 C153 350 191 347 216 326Z"/>
-          <path class="hero-leaf leaf-right" d="M284 327 C312 259 355 257 363 285 C359 320 326 336 284 327Z"/>
-          <g class="bloom bloom-main" transform="translate(205 176)">
-            <ellipse class="bloom-petal" cx="0" cy="-61" rx="30" ry="67"/>
-            <ellipse class="bloom-petal" cx="0" cy="-61" rx="30" ry="67" transform="rotate(72)"/>
-            <ellipse class="bloom-petal" cx="0" cy="-61" rx="30" ry="67" transform="rotate(144)"/>
-            <ellipse class="bloom-petal" cx="0" cy="-61" rx="30" ry="67" transform="rotate(216)"/>
-            <ellipse class="bloom-petal" cx="0" cy="-61" rx="30" ry="67" transform="rotate(288)"/>
-            <circle class="bloom-center" r="20"/>
-          </g>
-          <g class="bloom bloom-small" transform="translate(330 259) scale(.53)">
-            <ellipse class="bloom-petal" cx="0" cy="-61" rx="30" ry="67"/>
-            <ellipse class="bloom-petal" cx="0" cy="-61" rx="30" ry="67" transform="rotate(72)"/>
-            <ellipse class="bloom-petal" cx="0" cy="-61" rx="30" ry="67" transform="rotate(144)"/>
-            <ellipse class="bloom-petal" cx="0" cy="-61" rx="30" ry="67" transform="rotate(216)"/>
-            <ellipse class="bloom-petal" cx="0" cy="-61" rx="30" ry="67" transform="rotate(288)"/>
-            <circle class="bloom-center" r="20"/>
-          </g>
-        </svg>
-        <span class="hero-caption caption-top">SERIE 01<br>BOTÁNICA</span>
-        <span class="hero-caption caption-bottom">CRECE A TU<br>PROPIO RITMO</span>
-        <span class="hero-sparkle sparkle-a">✳</span>
-        <span class="hero-sparkle sparkle-b">✳</span>
-        <div class="rotating-stamp" aria-hidden="true"><span>JENDAL · FLORES · JENDAL · FLORES ·</span><b>✿</b></div>
+      <div class="hero-art">
+        <canvas class="hero-canvas" aria-hidden="true"></canvas>
       </div>
-      <a class="side-index" href="#coleccion">DESLIZA PARA EXPLORAR <span>↓</span></a>
+      <p class="hero-foot">Hecho a mano en México</p>
     </section>
 
-    <section class="intro section-wrap reveal" id="inspiracion">
-      <p class="eyebrow"><span class="eyebrow-line"></span> Una nota de Jendal</p>
-      <div class="intro-body">
-        <h2>Un poco de naturaleza,<br><em>mucho de ti.</em></h2>
-        <p>Nos inspiran los pétalos que aparecen en el camino, las flores de siempre y las que parecen de otro mundo. Los convertimos en piezas con alambre y chaquiras, llenas de color y pequeños detalles.</p>
-      </div>
-      <span class="intro-doodle" aria-hidden="true">✿</span>
+    <section class="manifesto" aria-label="Sobre Jendal">
+      <p>Cada pieza empieza como un puñado de chaquiras y un hilo de alambre. Pétalo por pétalo, lazo por lazo, se tuerce a mano hasta que <em>florece</em>.</p>
     </section>
 
-    <section class="archive" id="archivo">
-      <div class="archive-layout section-wrap">
-        <div class="archive-intro reveal">
-          <p class="eyebrow"><span class="eyebrow-line"></span> Jendal / archivo vivo</p>
-          <h2>Flores, ideas<br><em>y otras historias.</em></h2>
-          <p>Una colección nunca se queda quieta. Abre una pestaña para curiosear lo que va tomando forma en Jendal.</p>
-          <span class="archive-coordinates">26° 04' N — 99° 58' O<br>CUADERNO BOTÁNICO · 2026</span>
-        </div>
-        <div class="folder-browser reveal">
-          <div class="folder-tabs" role="tablist" aria-label="Explora las colecciones de Jendal">
-            <button class="folder-tab is-active" id="tab-botanica" role="tab" aria-selected="true" aria-controls="folder-panel" tabindex="0" data-folder="botanica"><span>Botánica</span><b>01</b></button>
-            <button class="folder-tab" id="tab-temporada" role="tab" aria-selected="false" aria-controls="folder-panel" tabindex="-1" data-folder="temporada"><span>Temporada</span><b>02</b></button>
-            <button class="folder-tab" id="tab-historias" role="tab" aria-selected="false" aria-controls="folder-panel" tabindex="-1" data-folder="historias"><span>Historias</span><b>03</b></button>
-            <button class="folder-tab" id="tab-personalizada" role="tab" aria-selected="false" aria-controls="folder-panel" tabindex="-1" data-folder="personalizada"><span>A tu manera</span><b>04</b></button>
-          </div>
-          <article class="folder-panel" id="folder-panel" role="tabpanel" aria-labelledby="tab-botanica" data-folder="botanica">
-            <div class="folder-panel-content">
-              <div class="folder-page-meta"><span id="folder-kicker">COLECCIÓN DE INICIO</span><span id="folder-index">JNDL—001</span></div>
-              <div class="folder-art" aria-hidden="true">
-                <span class="folder-orb"></span>
-                <svg class="folder-flower" viewBox="0 0 250 250">
-                  <path class="folder-stem" d="M126 143 C118 181 134 211 122 247"/>
-                  <path class="folder-leaf" d="M124 191 C82 158 59 177 73 196 C88 211 108 205 124 191Z"/>
-                  <g transform="translate(126 110)">
-                    <ellipse class="folder-petal" cx="0" cy="-43" rx="21" ry="47"/>
-                    <ellipse class="folder-petal" cx="0" cy="-43" rx="21" ry="47" transform="rotate(72)"/>
-                    <ellipse class="folder-petal" cx="0" cy="-43" rx="21" ry="47" transform="rotate(144)"/>
-                    <ellipse class="folder-petal" cx="0" cy="-43" rx="21" ry="47" transform="rotate(216)"/>
-                    <ellipse class="folder-petal" cx="0" cy="-43" rx="21" ry="47" transform="rotate(288)"/>
-                    <circle class="folder-center" r="15"/>
-                  </g>
-                </svg>
-                <span class="folder-art-note" id="folder-art-note">cada flor,<br>un pequeño universo</span>
-              </div>
-              <div class="folder-copy">
-                <p class="folder-overline" id="folder-overline">01 / FORMAS NATURALES</p>
-                <h3 id="folder-title">La colección botánica</h3>
-                <p id="folder-description">Lirios, orquídeas y flores de cinco pétalos reinterpretados con alambre y chaquiras.</p>
-                <div class="folder-tags" id="folder-tags"><span>LIRIOS</span><span>ORQUÍDEAS</span><span>CINCO PÉTALOS</span></div>
-                <a class="folder-link" id="folder-link" href="#coleccion">Asómate al catálogo <span>↗</span></a>
-              </div>
-            </div>
-          </article>
-          <p class="folder-hint"><span>✳</span> TOCA UNA PESTAÑA PARA ABRIR EL ARCHIVO</p>
-        </div>
+    <section class="collection" id="collares" aria-labelledby="collares-title">
+      <div class="collection-head">
+        <h2 id="collares-title">Collares</h2>
+        <p>Dos flores para empezar. Toca un color y mira cómo cambia la pieza; luego mírala puesta.</p>
       </div>
+      <div id="piezas"></div>
     </section>
 
-    <section class="catalog" id="coleccion">
-      <div class="catalog-top">
-        <div class="catalog-heading reveal">
-          <p class="eyebrow"><span class="eyebrow-line"></span> Elige tu próxima flor</p>
-          <h2>¿Cuál te<br><em>encuentra?</em></h2>
-        </div>
-        <div class="catalog-aside reveal">
-          <p>Desliza para descubrir las formas, colores y personalidades de la colección botánica.</p>
-          <div class="slider-controls" aria-label="Controles del catálogo">
-            <button class="slider-arrow slider-prev" type="button" aria-label="Piezas anteriores">←</button>
-            <span class="slider-count"><b>01</b><i></i><b>04</b></span>
-            <button class="slider-arrow slider-next" type="button" aria-label="Piezas siguientes">→</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="filter-row" role="group" aria-label="Filtrar colección">
-        <button class="filter is-active" data-filter="all" type="button">Todas <span>04</span></button>
-        <button class="filter" data-filter="lirio" type="button">Lirios</button>
-        <button class="filter" data-filter="orquidea" type="button">Orquídeas</button>
-        <button class="filter" data-filter="cotidiana" type="button">Cinco pétalos</button>
-        <button class="filter" data-filter="personalizada" type="button">Personalizadas</button>
-      </div>
-
-      <div class="slider-frame">
-        <div class="product-track" id="product-track" aria-label="Piezas de la colección; desliza horizontalmente">
-          <article class="product-card reveal" data-category="lirio">
-            <div class="card-art art-lily">
-              <span class="art-number">01 / LIRIO</span>
-              <svg viewBox="0 0 320 260" role="img" aria-label="Ilustración de un lirio rosa">
-                <path class="illustration-stem" d="M158 166 C157 205 143 230 153 260"/>
-                <path class="illustration-leaf" d="M154 205 C110 166 76 183 90 204 C108 220 135 219 154 205Z"/>
-                <g transform="translate(158 126)"><path class="lily-petal" d="M0 12 C-10 -33 -9 -92 0 -110 C20 -88 22 -31 0 12Z"/><path class="lily-petal petal-alt" d="M0 9 C-42 -15 -83 -54 -82 -75 C-48 -75 -10 -31 0 9Z"/><path class="lily-petal" d="M0 9 C42 -15 83 -54 82 -75 C48 -75 10 -31 0 9Z"/><circle class="illustration-center" r="9"/></g>
-              </svg>
-              <span class="art-label">flor para<br>mirar de cerca</span>
-            </div>
-            <div class="card-copy"><div><p class="card-kind">01 — forma floral</p><h3>Lirio</h3></div><span class="card-arrow">↗</span></div>
-            <p class="card-description">Una silueta que no pasa desapercibida.</p>
-            <a class="card-link" href="https://www.instagram.com/jendal_accesorios/" target="_blank" rel="noreferrer">Preguntar por esta flor <span>↗</span></a>
-          </article>
-
-          <article class="product-card reveal" data-category="orquidea">
-            <div class="card-art art-orchid">
-              <span class="art-number">02 / ORQUÍDEA</span>
-              <svg viewBox="0 0 320 260" role="img" aria-label="Ilustración de una orquídea rosa y frambuesa">
-                <path class="illustration-stem" d="M160 150 C154 200 168 221 158 260"/>
-                <path class="illustration-leaf" d="M160 205 C206 165 241 181 224 205 C207 222 181 220 160 205Z"/>
-                <g transform="translate(160 120)"><ellipse class="orchid-petal" cx="0" cy="-45" rx="27" ry="48"/><ellipse class="orchid-petal" cx="0" cy="-45" rx="27" ry="48" transform="rotate(72)"/><ellipse class="orchid-petal" cx="0" cy="-45" rx="27" ry="48" transform="rotate(144)"/><ellipse class="orchid-petal" cx="0" cy="-45" rx="27" ry="48" transform="rotate(216)"/><ellipse class="orchid-petal" cx="0" cy="-45" rx="27" ry="48" transform="rotate(288)"/><path class="orchid-lip" d="M-20 4 Q0 -22 20 4 Q16 31 0 34 Q-17 27 -20 4Z"/><circle class="illustration-center" r="7"/></g>
-              </svg>
-              <span class="art-label">color que<br>se hace notar</span>
-            </div>
-            <div class="card-copy"><div><p class="card-kind">02 — forma floral</p><h3>Orquídea</h3></div><span class="card-arrow">↗</span></div>
-            <p class="card-description">Curvas suaves con un toque dramático.</p>
-            <a class="card-link" href="https://www.instagram.com/jendal_accesorios/" target="_blank" rel="noreferrer">Preguntar por esta flor <span>↗</span></a>
-          </article>
-
-          <article class="product-card reveal" data-category="cotidiana">
-            <div class="card-art art-daisy">
-              <span class="art-number">03 / CINCO PÉTALOS</span>
-              <svg viewBox="0 0 320 260" role="img" aria-label="Ilustración de una flor de cinco pétalos">
-                <path class="illustration-stem" d="M160 157 C160 205 174 225 164 260"/>
-                <path class="illustration-leaf" d="M161 211 C117 177 88 190 99 212 C116 228 142 223 161 211Z"/>
-                <g class="daisy-bloom" transform="translate(160 111)"><ellipse class="daisy-petal" cx="0" cy="-43" rx="21" ry="39"/><ellipse class="daisy-petal" cx="0" cy="-43" rx="21" ry="39" transform="rotate(72)"/><ellipse class="daisy-petal" cx="0" cy="-43" rx="21" ry="39" transform="rotate(144)"/><ellipse class="daisy-petal" cx="0" cy="-43" rx="21" ry="39" transform="rotate(216)"/><ellipse class="daisy-petal" cx="0" cy="-43" rx="21" ry="39" transform="rotate(288)"/><circle class="illustration-center" r="16"/></g>
-              </svg>
-              <span class="art-label">pequeño ritual<br>de todos los días</span>
-            </div>
-            <div class="card-copy"><div><p class="card-kind">03 — flor cotidiana</p><h3>Cinco pétalos</h3></div><span class="card-arrow">↗</span></div>
-            <p class="card-description">Un guiño alegre para cualquier día.</p>
-            <a class="card-link" href="https://www.instagram.com/jendal_accesorios/" target="_blank" rel="noreferrer">Preguntar por esta flor <span>↗</span></a>
-          </article>
-
-          <article class="product-card reveal custom-card" data-category="personalizada">
-            <div class="card-art art-custom">
-              <span class="art-number">04 / A TU MANERA</span>
-              <div class="custom-orbit"><span>?</span><i>✿</i><b>✳</b></div>
-              <span class="art-label">tu idea también<br>puede florecer</span>
-            </div>
-            <div class="card-copy"><div><p class="card-kind">04 — diseño especial</p><h3>Personalizada</h3></div><span class="card-arrow">↗</span></div>
-            <p class="card-description">Elige flor, colores y pequeños detalles.</p>
-            <a class="card-link" href="https://www.instagram.com/jendal_accesorios/" target="_blank" rel="noreferrer">Cuéntanos tu idea <span>↗</span></a>
-          </article>
-        </div>
-      </div>
-      <div class="catalog-foot"><span>UN CATÁLOGO QUE FLORECE CONTIGO</span><span>Arrastra <b>⟶</b> o usa las flechas</span></div>
+    <section class="craft" id="hecho-a-mano" aria-labelledby="craft-title">
+      <h2 id="craft-title">Así llega a ti</h2>
+      <ol class="steps">
+        <li>
+          <span class="step-n" aria-hidden="true">1</span>
+          <h3>Eliges flor y color</h3>
+          <p>Escoge la pieza y el tono que va contigo. Si imaginas otra combinación, también se puede.</p>
+        </li>
+        <li>
+          <span class="step-n" aria-hidden="true">2</span>
+          <h3>Se teje a mano</h3>
+          <p>Cada pétalo se forma con lazos de chaquira sobre alambre. Por eso ninguna pieza es idéntica a otra.</p>
+        </li>
+        <li>
+          <span class="step-n" aria-hidden="true">3</span>
+          <h3>Te avisamos y es tuya</h3>
+          <p>Confirmamos por WhatsApp el tiempo de entrega y la forma de recibirla.</p>
+        </li>
+      </ol>
     </section>
 
-    <section class="custom-note section-wrap reveal" id="personalizados">
-      <div class="custom-note-flower" aria-hidden="true">✿</div>
-      <div><p class="eyebrow"><span class="eyebrow-line"></span> Una pieza con tu historia</p><h2>¿Qué flor<br><em>imaginas?</em></h2></div>
-      <div class="custom-note-copy"><p>Cuéntanos tu flor favorita, los colores que amas o esa historia que te inspira. La hacemos realidad contigo.</p><a class="round-link" href="https://www.instagram.com/jendal_accesorios/" target="_blank" rel="noreferrer">Hablemos por Instagram <span>↗</span></a></div>
+    <section class="soon" aria-labelledby="soon-title">
+      <h2 id="soon-title">Lo que viene</h2>
+      <ul class="soon-list" id="proximamente"></ul>
+      <a class="soon-link js-ig" href="https://www.instagram.com/jendal_accesorios/" target="_blank" rel="noopener">Síguenos para enterarte primero <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </section>
+
+    <section class="custom" aria-labelledby="custom-title">
+      <div class="custom-mark" aria-hidden="true"></div>
+      <h2 id="custom-title">¿Tienes una flor en mente?</h2>
+      <p>Cuéntanos tu flor favorita, los colores que te gustan o para quién es. La diseñamos contigo.</p>
+      <a class="btn btn-wine js-wa" href="#" data-message="Hola Jendal, me gustaría una pieza personalizada. Tengo esta idea: ">
+        <svg aria-hidden="true"><use href="#i-wa"/></svg> Pedir una pieza personalizada
+      </a>
+    </section>
+
+    <section class="faq" id="preguntas" aria-labelledby="faq-title">
+      <h2 id="faq-title">Preguntas</h2>
+      <div class="faq-list">
+        <details>
+          <summary>¿Cómo hago un pedido?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <p>Elige el collar y el color, y toca <strong>Pedir por WhatsApp</strong>. Se abre un mensaje ya escrito con la pieza y el color; solo envíalo y seguimos la conversación ahí.</p>
+        </details>
+        <details>
+          <summary>¿Puedo pedir un color que no aparece?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <p>Sí. Los colores del catálogo son sugerencias; escríbenos con la combinación que imaginas y te decimos si se puede.</p>
+        </details>
+        <details>
+          <summary>¿Cuánto tarda mi pieza?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <p>Depende de la pieza y de los pedidos del momento. Te confirmamos el tiempo exacto por WhatsApp antes de empezar.</p>
+        </details>
+        <details>
+          <summary>¿Las imágenes son fotos reales?<svg aria-hidden="true"><use href="#i-plus"/></svg></summary>
+          <p>Por ahora son ilustraciones de cada diseño, hechas cuenta por cuenta. Al ser hecha a mano, tu pieza puede variar un poco. Muy pronto subiremos fotos.</p>
+        </details>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <a class="footer-brand" href="#inicio"><img src="assets/logo-jendal.png?v=20261003d" alt="Jendal"></a>
-    <p>Flores que hablan de ti.</p>
-    <a class="footer-social" href="https://www.instagram.com/jendal_accesorios/" target="_blank" rel="noreferrer">@jendal_accesorios <span>↗</span></a>
-    <span class="copyright">Joyería botánica mexicana · Jendal ©</span>
+    <span class="logo logo-footer" role="img" aria-label="Jendal"></span>
+    <p class="footer-line">Joyería botánica tejida a mano.</p>
+    <div class="footer-links">
+      <a class="js-wa" href="#" data-message="Hola Jendal 🌸">
+        <svg aria-hidden="true"><use href="#i-wa"/></svg> WhatsApp
+      </a>
+      <a class="js-ig" href="https://www.instagram.com/jendal_accesorios/" target="_blank" rel="noopener">
+        <svg aria-hidden="true"><use href="#i-ig"/></svg> @jendal_accesorios
+      </a>
+    </div>
+    <p class="footer-small">© <span id="year">2026</span> Jendal Accesorios · Hecho a mano en México</p>
   </footer>
-  <script src="script.js?v=20261003d"></script>
+
+  <template id="piece-template">
+    <article class="piece">
+      <div class="piece-stage">
+        <canvas class="piece-canvas" role="img"></canvas>
+        <img class="piece-photo" alt="" hidden>
+        <div class="view-toggle" role="radiogroup" aria-label="Vista">
+          <button type="button" role="radio" aria-checked="true" data-mode="flat">Pieza</button>
+          <button type="button" role="radio" aria-checked="false" data-mode="worn">Puesta</button>
+          <span class="view-thumb" aria-hidden="true"></span>
+        </div>
+        <p class="stage-note">Ilustración del diseño</p>
+      </div>
+      <div class="piece-info">
+        <h3 class="piece-name"></h3>
+        <p class="piece-kind"></p>
+        <p class="piece-desc"></p>
+        <fieldset class="swatches">
+          <legend>Color <span class="swatch-name"></span></legend>
+          <div class="swatch-row"></div>
+        </fieldset>
+        <div class="buy">
+          <p class="price"></p>
+          <a class="btn btn-ink order" href="#" target="_blank" rel="noopener">
+            <svg aria-hidden="true"><use href="#i-wa"/></svg><span>Pedir por WhatsApp</span>
+          </a>
+        </div>
+        <p class="piece-note">Tejida a mano: cada pieza puede variar ligeramente.</p>
+      </div>
+    </article>
+  </template>
+
+  <script src="data.js?v=2"></script>
+  <script src="beads.js?v=2"></script>
+  <script src="script.js?v=2"></script>
 </body>
 </html>
