@@ -46,10 +46,13 @@ window.JENDAL = {
       description:
         "Un lirio de seis pétalos tejido a mano, chaquira por chaquira, que cuelga de una cadena de cuentas verdes como si acabara de brotar.",
       variants: [
-        { id: "rosa", name: "Rosa", field: "#ffeeee", ink: "#752640", petal: "#ffb5bd", edge: "#b32f4e", center: "#f4f7cd", leaf: "#8d9a2e", chain: "#8d9a2e", images: null },
-        { id: "mantequilla", name: "Mantequilla", field: "#f4f7cd", ink: "#752640", petal: "#f4f7cd", edge: "#8d9a2e", center: "#b32f4e", leaf: "#8d9a2e", chain: "#8d9a2e", images: null },
-        { id: "frambuesa", name: "Frambuesa", field: "#f8e4e8", ink: "#752640", petal: "#b32f4e", edge: "#752640", center: "#f4f7cd", leaf: "#8d9a2e", chain: "#8d9a2e", images: null },
-        { id: "olivo", name: "Olivo", field: "#8d9a2e", ink: "#fff8f1", petal: "#ffeeee", edge: "#b32f4e", center: "#f4f7cd", leaf: "#752640", chain: "#f4f7cd", images: null }
+        { id: "dorado", name: "Dorado", field: "#fbf4e7", ink: "#5b4937", petal: "#d7b86e", edge: "#af9251", center: "#fff8f1", leaf: "#a8ae68", chain: "#b79a53", images: null },
+        { id: "blanco", name: "Blanco", field: "#fffdf8", ink: "#625d56", petal: "#faf8f3", edge: "#d8d2c8", center: "#dfc783", leaf: "#a8ae68", chain: "#d8d2c8", images: null },
+        { id: "cafe", name: "Café", field: "#f2e8e0", ink: "#654d42", petal: "#b49a88", edge: "#8b715f", center: "#d9ba83", leaf: "#a8ae68", chain: "#9a806b", images: null },
+        { id: "rosa", name: "Rosa", field: "#fff1ef", ink: "#79535b", petal: "#f2c6cb", edge: "#bd8490", center: "#d7b86e", leaf: "#a8ae68", chain: "#bd8490", images: null },
+        { id: "plateado", name: "Plateado", field: "#f0f1f0", ink: "#505056", petal: "#cbd0d3", edge: "#9ca5aa", center: "#d8c690", leaf: "#a8ae68", chain: "#a7afb3", images: null },
+        { id: "negro", name: "Negro", field: "#ece7e6", ink: "#41383a", petal: "#554d50", edge: "#302a2d", center: "#d7b86e", leaf: "#a8ae68", chain: "#544c4e", images: null },
+        { id: "verde", name: "Verde", field: "#eff1df", ink: "#515745", petal: "#b7bf8d", edge: "#859060", center: "#d7b86e", leaf: "#909a60", chain: "#8e9a5d", images: null }
       ]
     },
     {
@@ -62,10 +65,13 @@ window.JENDAL = {
       description:
         "Una orquídea con su labio en contraste y dos botones a los lados. Delicada de lejos, llena de detalle cuando te acercas.",
       variants: [
-        { id: "rosa", name: "Rosa", field: "#fff8f1", ink: "#752640", petal: "#ffb5bd", edge: "#b32f4e", center: "#f4f7cd", leaf: "#8d9a2e", chain: "#8d9a2e", images: null },
-        { id: "frambuesa", name: "Frambuesa", field: "#f8e4e8", ink: "#752640", petal: "#b32f4e", edge: "#752640", center: "#f4f7cd", leaf: "#8d9a2e", chain: "#8d9a2e", images: null },
-        { id: "primavera", name: "Primavera", field: "#f4f7cd", ink: "#752640", petal: "#ffeeee", edge: "#b32f4e", center: "#ffb5bd", leaf: "#8d9a2e", chain: "#8d9a2e", images: null },
-        { id: "olivo", name: "Olivo", field: "#8d9a2e", ink: "#fff8f1", petal: "#ffeeee", edge: "#b32f4e", center: "#f4f7cd", leaf: "#752640", chain: "#f4f7cd", images: null }
+        { id: "dorado", name: "Dorado", field: "#fbf4e7", ink: "#5b4937", petal: "#d7b86e", edge: "#af9251", center: "#fff8f1", leaf: "#a8ae68", chain: "#b79a53", images: null },
+        { id: "blanco", name: "Blanco", field: "#fffdf8", ink: "#625d56", petal: "#faf8f3", edge: "#d8d2c8", center: "#dfc783", leaf: "#a8ae68", chain: "#d8d2c8", images: null },
+        { id: "cafe", name: "Café", field: "#f2e8e0", ink: "#654d42", petal: "#b49a88", edge: "#8b715f", center: "#d9ba83", leaf: "#a8ae68", chain: "#9a806b", images: null },
+        { id: "rosa", name: "Rosa", field: "#fff1ef", ink: "#79535b", petal: "#f2c6cb", edge: "#bd8490", center: "#d7b86e", leaf: "#a8ae68", chain: "#bd8490", images: null },
+        { id: "plateado", name: "Plateado", field: "#f0f1f0", ink: "#505056", petal: "#cbd0d3", edge: "#9ca5aa", center: "#d8c690", leaf: "#a8ae68", chain: "#a7afb3", images: null },
+        { id: "negro", name: "Negro", field: "#ece7e6", ink: "#41383a", petal: "#554d50", edge: "#302a2d", center: "#d7b86e", leaf: "#a8ae68", chain: "#544c4e", images: null },
+        { id: "verde", name: "Verde", field: "#eff1df", ink: "#515745", petal: "#b7bf8d", edge: "#859060", center: "#d7b86e", leaf: "#909a60", chain: "#8e9a5d", images: null }
       ]
     }
   ],
