@@ -55,6 +55,7 @@ window.JENDAL = {
     {
       id: "orquidea",
       category: "Collar",
+      collection: "semilla-botanica",
       name: "Orquídea",
       model: "orquidea",
       price: null,
