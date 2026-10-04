@@ -40,6 +40,9 @@
     model: "lirio", view: "bloom", variant: heroCycle[0], intro: "auto",
     bloom: { cx: 492, cy: 515, scale: 352, rotate: -0.18 }
   });
+  // Inicia explícitamente la flor del hero; el observador pausa el cambio de color
+  // cuando la sección sale de pantalla.
+  heroArt.play();
   let heroIndex = 0, heroTimer = 0, heroVisible = true;
   function cycleHero() {
     clearTimeout(heroTimer);
