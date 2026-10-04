@@ -179,17 +179,30 @@
     }, { threshold: 0.35 }).observe(canvas);
   });
 
-  /* ---------- próximamente ---------- */
+  /* ---------- lo que viene ---------- */
 
-  const soonColors = ["#FFB5BD", "#F4F7CD", "#B32F4E", "#8D9A2E"];
+  const soonColors = ["#D7B86E", "#FFFDF8", "#B49A88"];
   const soon = document.getElementById("proximamente");
-  const upcomingCollections = (data.collections || []).filter((collection) => collection.status === "upcoming");
-  upcomingCollections.forEach((collection, i) => {
-    const name = collection.name;
+  (data.upcoming || []).forEach((name, i) => {
     const li = document.createElement("li");
     li.style.setProperty("--dot", soonColors[i % soonColors.length]);
     li.innerHTML = `<span class="soon-name"></span><span class="soon-tag">Próximamente</span>`;
     li.querySelector(".soon-name").textContent = name;
     soon.append(li);
+  });
+
+  /* ---------- espacios reservados para futuras colecciones ---------- */
+
+  const collectionSlots = document.getElementById("proximas-colecciones");
+  (data.collections || []).filter((collection) => collection.status === "upcoming").forEach((collection) => {
+    const card = document.createElement("article");
+    card.className = "collection-slot";
+    const label = document.createElement("span");
+    label.className = "collection-slot-label";
+    label.textContent = "Colección reservada";
+    const title = document.createElement("h4");
+    title.textContent = collection.name;
+    card.append(label, title);
+    collectionSlots?.append(card);
   });
 })();
