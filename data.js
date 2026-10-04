@@ -38,10 +38,10 @@ window.JENDAL = {
       description:
         "Un lirio de seis pétalos tejido a mano, chaquira por chaquira, que cuelga de una cadena de cuentas verdes como si acabara de brotar.",
       variants: [
-        { id: "rosa", name: "Rosa empolvado", field: "#FDE5E8", ink: "#582A35", petal: "#E7B4B9", edge: "#A4565C", center: "#E8F0A2", leaf: "#999D4F", chain: "#999D4F", images: null },
-        { id: "frambuesa", name: "Frambuesa", field: "#E7B4B9", ink: "#582A35", petal: "#A4565C", edge: "#582A35", center: "#E8F0A2", leaf: "#999D4F", chain: "#999D4F", images: null },
-        { id: "primula", name: "Prímula", field: "#E8F0A2", ink: "#582A35", petal: "#FDE5E8", edge: "#A4565C", center: "#E7B4B9", leaf: "#999D4F", chain: "#999D4F", images: null },
-        { id: "olivo", name: "Olivo", field: "#999D4F", ink: "#FFF9F3", petal: "#FDE5E8", edge: "#A4565C", center: "#E8F0A2", leaf: "#63353C", chain: "#E8F0A2", images: null }
+        { id: "rosa", name: "Rosa", field: "#ffeeee", ink: "#752640", petal: "#ffb5bd", edge: "#b32f4e", center: "#f4f7cd", leaf: "#8d9a2e", chain: "#8d9a2e", images: null },
+        { id: "mantequilla", name: "Mantequilla", field: "#f4f7cd", ink: "#752640", petal: "#f4f7cd", edge: "#8d9a2e", center: "#b32f4e", leaf: "#8d9a2e", chain: "#8d9a2e", images: null },
+        { id: "frambuesa", name: "Frambuesa", field: "#f8e4e8", ink: "#752640", petal: "#b32f4e", edge: "#752640", center: "#f4f7cd", leaf: "#8d9a2e", chain: "#8d9a2e", images: null },
+        { id: "olivo", name: "Olivo", field: "#8d9a2e", ink: "#fff8f1", petal: "#ffeeee", edge: "#b32f4e", center: "#f4f7cd", leaf: "#752640", chain: "#f4f7cd", images: null }
       ]
     },
     {
@@ -53,10 +53,10 @@ window.JENDAL = {
       description:
         "Una orquídea con su labio en contraste y dos botones a los lados. Delicada de lejos, llena de detalle cuando te acercas.",
       variants: [
-        { id: "rosa", name: "Rosa empolvado", field: "#FDE5E8", ink: "#582A35", petal: "#E7B4B9", edge: "#A4565C", center: "#E8F0A2", leaf: "#999D4F", chain: "#999D4F", images: null },
-        { id: "vino", name: "Vino", field: "#E7B4B9", ink: "#582A35", petal: "#A4565C", edge: "#582A35", center: "#E8F0A2", leaf: "#999D4F", chain: "#999D4F", images: null },
-        { id: "primula", name: "Prímula", field: "#E8F0A2", ink: "#582A35", petal: "#FDE5E8", edge: "#A4565C", center: "#E7B4B9", leaf: "#999D4F", chain: "#999D4F", images: null },
-        { id: "olivo", name: "Olivo", field: "#999D4F", ink: "#FFF9F3", petal: "#FDE5E8", edge: "#A4565C", center: "#E8F0A2", leaf: "#63353C", chain: "#E8F0A2", images: null }
+        { id: "rosa", name: "Rosa", field: "#fff8f1", ink: "#752640", petal: "#ffb5bd", edge: "#b32f4e", center: "#f4f7cd", leaf: "#8d9a2e", chain: "#8d9a2e", images: null },
+        { id: "frambuesa", name: "Frambuesa", field: "#f8e4e8", ink: "#752640", petal: "#b32f4e", edge: "#752640", center: "#f4f7cd", leaf: "#8d9a2e", chain: "#8d9a2e", images: null },
+        { id: "primavera", name: "Primavera", field: "#f4f7cd", ink: "#752640", petal: "#ffeeee", edge: "#b32f4e", center: "#ffb5bd", leaf: "#8d9a2e", chain: "#8d9a2e", images: null },
+        { id: "olivo", name: "Olivo", field: "#8d9a2e", ink: "#fff8f1", petal: "#ffeeee", edge: "#b32f4e", center: "#f4f7cd", leaf: "#752640", chain: "#f4f7cd", images: null }
       ]
     }
   ],
