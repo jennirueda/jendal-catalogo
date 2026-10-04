@@ -200,7 +200,7 @@
         travel: Math.abs(t - 0.5) * 0.5,
         layer: 0,
         // los extremos se pierden detrás del cuello
-        hide: wear ? clamp01(Math.min(t, 1 - t) / 0.14) : 1
+        hide: wear ? clamp01(Math.min(t, 1 - t) / 0.035) : 1
       });
     });
 
@@ -262,7 +262,7 @@
     if (opts.wear) {
       photo = new Image();
       photo.decoding = "async";
-      photo.onload = () => kick();
+      photo.onload = () => { preparePhoto(); kick(); };
       photo.src = opts.wear.src;
     }
     const ink = hexToRgb(opts.ink || "#1c1416");
@@ -285,6 +285,82 @@
 
     const COLOR_MS = 900, MODE_MS = 1500, INTRO_MS = opts.view === "bloom" ? 2300 : 1700;
 
+    // brillo y sombra del vidrio en una imagen pequeña que se reutiliza en cada cuenta
+    const sprite = document.createElement("canvas");
+    (() => {
+      const n = 64, g = sprite.getContext("2d");
+      sprite.width = sprite.height = n;
+      const c = n / 2, R = n / 2 - 1;
+      let grad = g.createRadialGradient(c - R * 0.3, c - R * 0.35, R * 0.1, c, c, R);
+      grad.addColorStop(0, "rgba(255,255,255,0.28)");
+      grad.addColorStop(0.55, "rgba(255,255,255,0)");
+      grad.addColorStop(0.82, "rgba(0,0,0,0.12)");
+      grad.addColorStop(1, "rgba(0,0,0,0.42)");
+      g.fillStyle = grad;
+      g.beginPath(); g.arc(c, c, R, 0, TAU); g.fill();
+      grad = g.createRadialGradient(c - R * 0.36, c - R * 0.38, 0, c - R * 0.36, c - R * 0.38, R * 0.32);
+      grad.addColorStop(0, "rgba(255,255,255,0.95)");
+      grad.addColorStop(0.45, "rgba(255,255,255,0.55)");
+      grad.addColorStop(1, "rgba(255,255,255,0)");
+      g.fillStyle = grad;
+      g.beginPath(); g.arc(c - R * 0.36, c - R * 0.38, R * 0.32, 0, TAU); g.fill();
+      g.fillStyle = "rgba(0,0,0,0.22)";
+      g.beginPath(); g.arc(c + R * 0.06, c + R * 0.05, R * 0.15, 0, TAU); g.fill();
+    })();
+
+    const spriteCache = new Map();
+    function beadSprite(c) {
+      const q = (v) => Math.min(255, Math.max(0, Math.round(v / 3) * 3));
+      const key = (q(c[0]) << 16) | (q(c[1]) << 8) | q(c[2]);
+      let sp = spriteCache.get(key);
+      if (sp) return sp;
+      if (spriteCache.size > 700) spriteCache.clear();
+      sp = document.createElement("canvas");
+      sp.width = sp.height = 64;
+      const g = sp.getContext("2d");
+      const base = [q(c[0]), q(c[1]), q(c[2])];
+      g.fillStyle = css(shade(base, -0.28));
+      g.beginPath(); g.arc(32, 32, 31, 0, TAU); g.fill();
+      g.fillStyle = css(base);
+      g.beginPath(); g.arc(30, 29.5, 26, 0, TAU); g.fill();
+      g.drawImage(sprite, 0, 0);
+      spriteCache.set(key, sp);
+      return sp;
+    }
+
+    // las sombras se pintan a 1/4 de resolución: al escalarlas quedan suaves sin filtros caros
+    const shadowCanvas = document.createElement("canvas");
+    const sctx = shadowCanvas.getContext("2d");
+    const photoCanvas = document.createElement("canvas");
+    let light = null;
+
+    function preparePhoto() {
+      if (!photo || !photo.complete || !photo.naturalWidth) return;
+      const c = opts.wear.crop, px = Math.max(1, Math.round(W * size.k));
+      photoCanvas.width = photoCanvas.height = px;
+      const g = photoCanvas.getContext("2d");
+      g.imageSmoothingQuality = "high";
+      g.drawImage(photo, c.x, c.y, c.size, c.size, 0, 0, px, px);
+      if (!light) {
+        // mapa de luz de la foto para iluminar cada cuenta según dónde cae
+        const n = 100, lc = document.createElement("canvas");
+        lc.width = lc.height = n;
+        const lg = lc.getContext("2d", { willReadFrequently: true });
+        lg.drawImage(photo, c.x, c.y, c.size, c.size, 0, 0, n, n);
+        const d = lg.getImageData(0, 0, n, n).data;
+        light = new Float32Array(n * n);
+        for (let i = 0; i < n * n; i++) {
+          const l = (0.2126 * d[i * 4] + 0.7152 * d[i * 4 + 1] + 0.0722 * d[i * 4 + 2]) / 255;
+          light[i] = Math.min(1.12, Math.max(0.3, Math.pow(l / 0.6, 0.85)));
+        }
+      }
+    }
+    const lightAt = (x, y) => {
+      if (!light) return 1;
+      const i = Math.min(99, Math.max(0, (y / 10) | 0)) * 100 + Math.min(99, Math.max(0, (x / 10) | 0));
+      return light[i];
+    };
+
     function resize() {
       const rect = canvas.getBoundingClientRect();
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -292,24 +368,54 @@
       canvas.height = Math.max(1, Math.round(rect.height * dpr));
       const k = (Math.min(rect.width, rect.height) / W) * dpr * (opts.zoom || 1);
       size = { w: canvas.width, h: canvas.height, dpr, k, ox: (canvas.width - W * k) / 2, oy: (canvas.height - W * k) / 2 };
+      shadowCanvas.width = Math.ceil(size.w / 4);
+      shadowCanvas.height = Math.ceil(size.h / 4);
+      preparePhoto();
       draw();
     }
 
+    let colorEnd = 0;
     function colorOf(b, t) {
       const p = clamp01((t - b.cStart - b.cDelay) / COLOR_MS);
       return p >= 1 ? b.to : mix(b.from, b.to, inOut(p));
     }
 
+    const list = scene.beads;
+    const pos = new Float32Array(list.length * 4);
+
+    function paintShadows(alpha, color, dx, dy, grow, composite) {
+      sctx.setTransform(1, 0, 0, 1, 0, 0);
+      sctx.clearRect(0, 0, shadowCanvas.width, shadowCanvas.height);
+      sctx.setTransform(size.k / 4, 0, 0, size.k / 4, size.ox / 4, size.oy / 4);
+      sctx.fillStyle = color;
+      sctx.beginPath();
+      for (let i = 0; i < list.length; i++) {
+        const r = pos[i * 4 + 2];
+        if (r <= 0 || pos[i * 4 + 3] < 0.5) continue;
+        const x = pos[i * 4] + r * dx, y = pos[i * 4 + 1] + r * dy;
+        sctx.moveTo(x + r * grow, y);
+        sctx.arc(x, y, r * grow, 0, TAU);
+      }
+      sctx.fill();
+      ctx.save();
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.globalAlpha = alpha;
+      ctx.globalCompositeOperation = composite;
+      ctx.imageSmoothingQuality = "high";
+      ctx.drawImage(shadowCanvas, 0, 0, size.w, size.h);
+      ctx.restore();
+    }
+
     function draw() {
       const t = now();
-      let busy = false;
+      let busy = t < colorEnd;
       if (introStart === null) introStart = t;
       const intro = introStart === Infinity ? 0 : clamp01((t - introStart) / INTRO_MS);
       if (intro < 1 && introStart !== Infinity) busy = true;
 
       const mp = clamp01((t - modeStart) / MODE_MS);
       if (mp < 1) busy = true;
-      mode = modeFrom + (modeTo - modeFrom) * mp;
+      mode = modeFrom + (modeTo - modeFrom) * inOut(mp);
 
       tilt[0] += (tiltTarget[0] - tilt[0]) * 0.08;
       tilt[1] += (tiltTarget[1] - tilt[1]) * 0.08;
@@ -321,15 +427,15 @@
 
       ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.clearRect(0, 0, size.w, size.h);
-      ctx.setTransform(size.k, 0, 0, size.k, size.ox, size.oy);
 
-      if (photo && photo.complete && photo.naturalWidth && mode > 0.001) {
-        const c = opts.wear.crop;
-        ctx.save();
-        ctx.globalAlpha = inOut(clamp01(mode * 1.4));
-        ctx.drawImage(photo, c.x, c.y, c.size, c.size, 0, 0, W, W);
-        ctx.restore();
+      const photoA = photo && photoCanvas.width > 1 ? inOut(clamp01(mode * 1.3)) : 0;
+      if (photoA > 0.001) {
+        ctx.globalAlpha = photoA;
+        ctx.drawImage(photoCanvas, Math.round(size.ox), Math.round(size.oy));
+        ctx.globalAlpha = 1;
       }
+
+      ctx.setTransform(size.k, 0, 0, size.k, size.ox, size.oy);
 
       // la silueta se dibuja como una sola línea, igual que el logo
       if (scene.neck && mode > 0.001) {
@@ -340,7 +446,7 @@
         ctx.strokeStyle = css(inkNow, 0.85);
         ctx.lineWidth = 2.4;
         scene.neck.forEach((pts) => {
-          const acc = lengths(pts), total = acc[acc.length - 1];
+          const total = pts.total || (pts.total = lengths(pts).pop());
           ctx.setLineDash([total * drawn, total]);
           ctx.beginPath();
           pts.forEach(([x, y], i) => (i ? ctx.lineTo(x, y) : ctx.moveTo(x, y)));
@@ -351,21 +457,19 @@
 
       const cx = scene.focus.flat[0], cy = scene.focus.flat[1];
       const rot = tilt[0] * 0.05, ca = Math.cos(rot), sa = Math.sin(rot);
-      const list = scene.beads;
-      const pos = new Float32Array(list.length * 4);
+      const tilting = tilt[0] || tilt[1];
 
       for (let i = 0; i < list.length; i++) {
         const b = list[i];
         let m = mode;
         if (mp < 1) {
-          const d = b.travel;
-          const local = clamp01((mp - d) / (1 - 0.5));
+          const local = clamp01((mp - b.travel) / 0.5);
           m = modeFrom + (modeTo - modeFrom) * inOut(local);
         }
         let x = b.fx + (b.wx - b.fx) * m;
         let y = b.fy + (b.wy - b.fy) * m;
-        let r = b.fr + (b.wr - b.fr) * m;
-        if (tilt[0] || tilt[1]) {
+        const r = b.fr + (b.wr - b.fr) * m;
+        if (tilting) {
           const dx = x - cx, dy = y - cy;
           x = cx + dx * ca - dy * sa + tilt[0] * 10 * (b.layer + 1) * 0.5;
           y = cy + dx * sa + dy * ca + tilt[1] * 8 * (b.layer + 1) * 0.5;
@@ -375,62 +479,30 @@
           const local = clamp01((intro * 1.35 - b.order * 0.95) / 0.22);
           s = local <= 0 ? 0 : expoOut(local) * (1 + 0.25 * Math.sin(local * Math.PI));
         }
-        pos[i * 4] = x; pos[i * 4 + 1] = y; pos[i * 4 + 2] = r * s; pos[i * 4 + 3] = 1 - m * (1 - (b.hide ?? 1));
+        pos[i * 4] = x; pos[i * 4 + 1] = y; pos[i * 4 + 2] = r * s;
+        pos[i * 4 + 3] = 1 - m * (1 - (b.hide ?? 1));
       }
 
-      // sombra suave sobre la mesa
-      const shadowA = 0.15 * (1 - mode);
-      if (shadowA > 0.01) {
-        ctx.fillStyle = css(inkNow, shadowA);
-        for (let i = 0; i < list.length; i++) {
-          const r = pos[i * 4 + 2];
-          if (r <= 0) continue;
-          ctx.beginPath();
-          ctx.arc(pos[i * 4] + r * 0.32, pos[i * 4 + 1] + r * 0.55, r * 1.02, 0, TAU);
-          ctx.fill();
-        }
-      }
+      if (mode < 0.99) paintShadows(0.16 * (1 - mode), css(inkNow), 0.32, 0.6, 1.05, "source-over");
+      if (photoA > 0.01) paintShadows(0.55 * photoA, "rgb(70,36,22)", 0.25, 0.9, 1.2, "multiply");
 
-      // sombra de las cuentas sobre la piel
-      if (photo && mode > 0.01) {
-        ctx.save();
-        ctx.globalCompositeOperation = "multiply";
-        ctx.filter = `blur(${Math.max(1, 2.6 * size.k).toFixed(1)}px)`;
-        ctx.fillStyle = `rgba(74,40,26,${(0.5 * mode).toFixed(3)})`;
-        for (let i = 0; i < list.length; i++) {
-          const r = pos[i * 4 + 2];
-          if (r <= 0) continue;
-          ctx.globalAlpha = pos[i * 4 + 3];
-          ctx.beginPath();
-          ctx.arc(pos[i * 4] + r * 0.3, pos[i * 4 + 1] + r * 0.95, r * 1.1, 0, TAU);
-          ctx.fill();
-        }
-        ctx.restore();
-      }
-
-      const warm = [196, 150, 120], tone = photo ? mode : 0;
+      // cada cuenta es una sola imagen (color + vidrio), pintada en orden para respetar lo que queda encima
+      const warm = [196, 150, 120];
       for (let i = 0; i < list.length; i++) {
-        const r = pos[i * 4 + 2];
-        if (r <= 0) continue;
-        const x = pos[i * 4], y = pos[i * 4 + 1], b = list[i];
-        ctx.globalAlpha = pos[i * 4 + 3];
-        if (ctx.globalAlpha <= 0.01) continue;
-        let c = colorOf(b, t);
-        if (tone) c = shade(mix(c, warm, 0.1 * tone), -0.1 * tone);
-        if (t - b.cStart - b.cDelay < COLOR_MS) busy = true;
-        ctx.fillStyle = css(shade(c, -0.3));
-        ctx.beginPath(); ctx.arc(x, y, r, 0, TAU); ctx.fill();
-        ctx.fillStyle = css(c);
-        ctx.beginPath(); ctx.arc(x - r * 0.07, y - r * 0.09, r * 0.8, 0, TAU); ctx.fill();
-        ctx.fillStyle = "rgba(255,255,255,0.62)";
-        ctx.beginPath(); ctx.arc(x - r * 0.34, y - r * 0.36, r * 0.24, 0, TAU); ctx.fill();
-        if (r > 3.2) {
-          ctx.fillStyle = css(shade(c, -0.45), 0.55);
-          ctx.beginPath(); ctx.arc(x + r * 0.08, y + r * 0.06, r * 0.16, 0, TAU); ctx.fill();
+        const r = pos[i * 4 + 2], a = pos[i * 4 + 3];
+        if (r <= 0 || a <= 0.01) continue;
+        let c = colorOf(list[i], t);
+        if (photoA > 0) {
+          const l = lightAt(pos[i * 4], pos[i * 4 + 1]);
+          const lit = 1 + (Math.max(0.62, l) - 1) * 0.75 * photoA;
+          c = mix(c, warm, 0.06 * photoA);
+          c = [c[0] * lit, c[1] * lit, c[2] * lit];
         }
+        ctx.globalAlpha = a;
+        ctx.drawImage(beadSprite(c), pos[i * 4] - r, pos[i * 4 + 1] - r, r * 2, r * 2);
       }
-
       ctx.globalAlpha = 1;
+
       raf = busy ? requestAnimationFrame(draw) : 0;
     }
 
@@ -446,6 +518,7 @@
         b.cStart = instant ? -Infinity : t;
         const x = b.fx + (b.wx - b.fx) * mode, y = b.fy + (b.wy - b.fy) * mode;
         b.cDelay = instant ? 0 : Math.hypot(x - o[0], y - o[1]) * 1.15;
+        colorEnd = Math.max(colorEnd, b.cStart + b.cDelay + COLOR_MS);
       });
       if (v.ink) { inkFrom = mix(inkFrom, inkColor, 1); inkColor = hexToRgb(v.ink); inkStart = instant ? -Infinity : t; }
       kick();

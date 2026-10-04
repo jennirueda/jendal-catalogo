@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Italiana&display=swap">
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -143,8 +143,10 @@
   <template id="piece-template">
     <article class="piece">
       <div class="piece-stage">
-        <canvas class="piece-canvas" role="img"></canvas>
-        <img class="piece-photo" alt="" hidden>
+        <div class="stage-frame">
+          <canvas class="piece-canvas" role="img"></canvas>
+          <img class="piece-photo" alt="" hidden>
+        </div>
         <div class="view-toggle" role="radiogroup" aria-label="Vista">
           <button type="button" role="radio" aria-checked="true" data-mode="flat">Pieza</button>
           <button type="button" role="radio" aria-checked="false" data-mode="worn">Puesta</button>
@@ -171,8 +173,8 @@
     </article>
   </template>
 
-  <script src="data.js?v=3"></script>
-  <script src="beads.js?v=3"></script>
-  <script src="script.js?v=3"></script>
+  <script src="data.js?v=4"></script>
+  <script src="beads.js?v=4"></script>
+  <script src="script.js?v=4"></script>
 </body>
 </html>
