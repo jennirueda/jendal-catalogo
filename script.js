@@ -74,6 +74,7 @@
     const node = template.content.firstElementChild.cloneNode(true);
     node.id = `collar-${piece.id}`;
     node.classList.toggle("is-flipped", pieceIndex % 2 === 1);
+    node.dataset.collection = piece.collection || "semilla-botanica";
 
     const canvas = node.querySelector(".piece-canvas");
     const photo = node.querySelector(".piece-photo");
@@ -180,9 +181,11 @@
 
   /* ---------- próximamente ---------- */
 
-  const soonColors = ["#F59AB0", "#F7E08A", "#F6A15A", "#C9A8E8", "#7FA048"];
+  const soonColors = ["#FFB5BD", "#F4F7CD", "#B32F4E", "#8D9A2E"];
   const soon = document.getElementById("proximamente");
-  data.upcoming.forEach((name, i) => {
+  const upcomingCollections = (data.collections || []).filter((collection) => collection.status === "upcoming");
+  upcomingCollections.forEach((collection, i) => {
+    const name = collection.name;
     const li = document.createElement("li");
     li.style.setProperty("--dot", soonColors[i % soonColors.length]);
     li.innerHTML = `<span class="soon-name"></span><span class="soon-tag">Próximamente</span>`;
