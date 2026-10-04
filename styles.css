@@ -1,29 +1,31 @@
 @property --field {
   syntax: "<color>";
   inherits: true;
-  initial-value: #FFF9F3;
+  initial-value: #fff8f1;
 }
 @property --ink {
   syntax: "<color>";
   inherits: true;
-  initial-value: #39292C;
+  initial-value: #2b2026;
 }
 
 :root {
-  --wine: #A4565C;
-  --wine-deep: #63353C;
-  --paper: #FFF9F3;
-  --ink-base: #39292C;
-  --ink-soft: #70565B;
-  --rose: #E7B4B9;
-  --butter: #E8F0A2;
-  --tangerine: #A4565C;
-  --lilac: #E7B4B9;
-  --leaf: #999D4F;
-  --cream: #FFF9F3;
+  --blush:#ffeeee;
+  --wine: #b32f4e;
+  --wine-deep: #752640;
+  --paper: #fffdf8;
+  --ink-base: #2b2026;
+  --ink-soft: #76676a;
+  --rose: #ffb5bd;
+  --butter: #f4f7cd;
+  --tangerine: #b32f4e;
+  --lilac: #ffb5bd;
+  --leaf: #8d9a2e;
+  --cream: #fff8f1;
 
-  --display: "Berkshire Swash", "Italiana", "Didot", "Bodoni 72", serif;
-  --text: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --display: "Bodoni Moda", "Bodoni MT", Didot, Georgia, serif;
+  --script: "Italianno", "Segoe Script", cursive;
+  --text: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 
   --gutter: clamp(20px, 5vw, 72px);
   --section: clamp(88px, 13vw, 168px);
@@ -107,7 +109,7 @@ svg { width: 1.15em; height: 1.15em; flex: none; }
   position: relative; min-height: 100svh; overflow: hidden;
   display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: center;
   padding: 110px var(--gutter) 72px; gap: 24px;
-  background: radial-gradient(120% 90% at 72% 48%, #C27D83 0%, var(--wine) 46%, var(--wine-deep) 100%);
+  background:var(--cream);
   color: var(--cream);
 }
 .hero-copy { position: relative; z-index: 2; max-width: 34rem; }
@@ -124,7 +126,7 @@ svg { width: 1.15em; height: 1.15em; flex: none; }
 
 .manifesto { padding: var(--section) var(--gutter); display: grid; place-items: center; }
 .manifesto p { max-width: 24ch; font-family: var(--display); font-size: clamp(2rem, 4.4vw, 3.5rem); line-height: 1.14; text-align: center; color: var(--wine-deep); text-wrap: balance; }
-.manifesto em { font-style: normal; color: #A4565C; }
+.manifesto em { font-style: normal; color: #b32f4e; }
 
 /* ---------- colección ---------- */
 
@@ -137,9 +139,9 @@ svg { width: 1.15em; height: 1.15em; flex: none; }
 .collection-head p { color: var(--ink-soft); }
 
 .piece {
-  --field: #FDE5E8;
-  --ink: #582A35;
-  --accent: #A4565C;
+  --field: #ffeeee;
+  --ink: #752640;
+  --accent: #b32f4e;
   position: relative;
   display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); align-items: center;
   min-height: min(100svh, 960px);
@@ -214,7 +216,7 @@ svg { width: 1.15em; height: 1.15em; flex: none; }
 .craft h2, .soon h2, .faq h2 { font-size: clamp(2.8rem, 6vw, 4.6rem); line-height: 0.95; color: var(--wine); }
 .steps { list-style: none; margin: clamp(48px, 6vw, 80px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px clamp(24px, 4vw, 64px); }
 .steps li { padding-top: 24px; border-top: 1px solid rgba(164, 86, 92, 0.2); }
-.step-n { display: block; font-family: var(--display); font-size: 3.4rem; line-height: 1; color: #A4565C; }
+.step-n { display: block; font-family: var(--display); font-size: 3.4rem; line-height: 1; color: #b32f4e; }
 .steps h3 { margin-top: 22px; font-size: 1.12rem; font-weight: 600; }
 .steps p { margin-top: 10px; max-width: 30ch; color: var(--ink-soft); }
 
@@ -240,7 +242,7 @@ svg { width: 1.15em; height: 1.15em; flex: none; }
 
 .custom { padding: var(--section) var(--gutter); display: grid; justify-items: center; text-align: center; }
 .custom-mark {
-  width: 88px; aspect-ratio: 216 / 210; margin-bottom: 32px; background: #A4565C;
+  width: 88px; aspect-ratio: 216 / 210; margin-bottom: 32px; background: #b32f4e;
   -webkit-mask: url("assets/jendal-flor.png") center / contain no-repeat;
   mask: url("assets/jendal-flor.png") center / contain no-repeat;
   animation: spin 40s linear infinite;
@@ -308,3 +310,23 @@ svg { width: 1.15em; height: 1.15em; flex: none; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
+
+
+/* Estilo Jendal según las capturas: crema, rosa, frambuesa y oliva */
+.site-header:not(.is-solid) { color:var(--ink-base); }
+.site-header.is-solid { background:rgba(255,248,241,.97); color:var(--wine); }
+.hero { background:var(--cream); color:var(--ink-base); }
+.hero-lede { color:var(--ink-soft); }
+.link-light { color:var(--wine); }
+.link-light:hover { color:var(--wine-deep); }
+.hero-foot { color:var(--ink-soft); }
+.hero-art::before { content:""; position:absolute; z-index:0; inset:7%; border-radius:50% 47% 51% 45%; background:var(--blush); transform:rotate(-9deg); }
+.hero-canvas { position:relative; z-index:1; }
+.btn-light { background:var(--wine); color:var(--cream); box-shadow:0 10px 30px -12px rgba(117,38,64,.32); }
+.btn-light:hover { background:var(--wine-deep); }
+.hero h1 em,.manifesto em { color:var(--wine); font-family:var(--script); font-style:normal; }
+.manifesto { background:var(--paper); }
+.collection { background:var(--butter); }
+.craft { background:#f8e4e8; }
+.site-footer { background:var(--leaf); color:var(--paper); }
+.site-footer .footer-line { color:var(--paper); }
