@@ -17,18 +17,12 @@
   document.querySelectorAll(".js-ig").forEach((link) => { link.href = igUrl; });
   document.getElementById("year").textContent = new Date().getFullYear();
 
-  /* ---------- encabezado: sólido después del hero, se esconde al bajar ---------- */
+  /* ---------- encabezado: barra expandida arriba, flotante al iniciar el scroll ---------- */
 
   const header = document.querySelector(".site-header");
-  const hero = document.querySelector(".hero");
-  let lastY = window.scrollY;
   function onScroll() {
-    const y = window.scrollY;
-    const pastHero = y > hero.offsetHeight - 80;
-    header.classList.toggle("is-solid", pastHero);
-    header.classList.toggle("is-hidden", pastHero && y > lastY + 4 && !header.contains(document.activeElement));
-    if (y < lastY - 4 || !pastHero) header.classList.remove("is-hidden");
-    lastY = y;
+    header.classList.toggle("is-solid", window.scrollY > 24);
+    header.classList.remove("is-hidden");
   }
   window.addEventListener("scroll", () => requestAnimationFrame(onScroll), { passive: true });
   onScroll();
