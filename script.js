@@ -20,6 +20,7 @@
   /* ---------- encabezado: barra expandida arriba, flotante al iniciar el scroll ---------- */
 
   const header = document.querySelector(".site-header");
+  const hero = document.querySelector(".hero");
   function onScroll() {
     header.classList.toggle("is-solid", window.scrollY > 24);
     header.classList.remove("is-hidden");
